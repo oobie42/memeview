@@ -1,8 +1,9 @@
 import type { Component } from 'solid-js';
 import { createResource, createSignal } from 'solid-js';
 
-const fetchMemeList = async () =>
-  (await fetch('https://meme-api.herokuapp.com/gimme/20')).json();
+async function fetchMemeList() {
+  return (await fetch('https://meme-api.herokuapp.com/gimme/wholesomememes/20')).json();
+}
 
 function Meme(props): Component {
   const [meme, setMeme] = createSignal(props.meme);
@@ -12,6 +13,7 @@ function Meme(props): Component {
         <img src={meme().preview[0]}></img>
       </a>
       <p>{meme().title}</p>
+      <p>{meme().ups}</p>
     </div>
   );
 }
